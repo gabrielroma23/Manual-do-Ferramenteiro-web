@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Usinagem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cálculo de Usinagem</h1>
+        
+        <div class="form-group">
+            <label for="operacao">Selecione a Operação:</label>
+            <select id="operacao" class="form-control" onchange="mostrarFormula()">
+                <option value="fresamento">Fresamento</option>
+                <option value="furacao">Furação</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="material">Selecione o Material:</label>
+            <select id="material" class="form-control">
+                <option value="aco_carbono_menor_045">Aço Carbono (C<0,45%)</option>
+                <option value="aco_carbono_maior_045">Aço Carbono (C>0,45%)</option>
+                <option value="aco_inoxidavel">Aço Inoxidável</option>
+                <option value="aco_ferramenta">Aço Ferramenta</option>
+                <option value="ferro_fundido">Ferro Fundido</option>
+                <option value="aluminio_ligas">Alumínio e Ligas</option>
+                <option value="latao">Latão</option>
+                <option value="cobre">Cobre</option>
+                <option value="plasticos">Plásticos</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ferramenta">Tipo de Ferramenta:</label>
+            <select id="ferramenta" class="form-control">
+                <option value="hss">Aço Rápido (HSS)</option>
+                <option value="metal_duro">Metal Duro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="diametroFerramenta">Diâmetro da Ferramenta (mm):</label>
+            <input type="number" class="form-control" id="diametroFerramenta" placeholder="Insira o diâmetro da ferramenta">
+        </div>
+
+        <!-- Controle de Vc com botão de arrastar -->
+        <div class="form-group">
+            <label for="vcRange">Velocidade de Corte (Vc):</label>
+            <input type="range" id="vcRange" class="form-control" min="0" max="400" step="1" oninput="document.getElementById('vcOutput').value = vcRange.value">
+            <output id="vcOutput">200</output> m/min
+        </div>
+
+        <!-- Campo de avanço -->
+        <div class="form-group">
+            <label for="avanco">Avanço por dente (mm/dente) ou por rotação (mm/rev):</label>
+            <input type="number" class="form-control" id="avanco" placeholder="Insira o avanço (f ou fz)">
+        </div>
+
+        <!-- Campo para número de dentes (para fresamento) -->
+        <div class="form-group" id="numDentesDiv" style="display: none;">
+            <label for="numDentes">Número de Dentes da Ferramenta:</label>
+            <input type="number" class="form-control" id="numDentes" placeholder="Insira o número de dentes da ferramenta">
+        </div>
+
+        <!-- Botão de cálculo -->
+        <button class="btn btn-primary" onclick="calcular()">Calcular</button>
+
+        <!-- Resultado do cálculo -->
+        <div id="resultado"></div>
+
+        <!-- Exibição da fórmula -->
+        <div id="formula" class="formula-display"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
